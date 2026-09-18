@@ -1,0 +1,20 @@
+# .NET
+bin/
+obj/
+*.user
+
+# Docker / secrets
+.env
+
+# Node prototype
+web-prototype/node_modules/
+web-prototype/src/db/derma.db
+
+# VS / OS
+.vs/
+*.suo
+Thumbs.db
+
+# Config local de herramientas
+.claude/
+src/Derma.UI/appsettings.local.json

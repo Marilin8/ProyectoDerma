@@ -1,0 +1,141 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  background: #f4f6f8;
+  color: #1c2b2d;
+}
+
+.auth-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 400px;
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 40px 36px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.brand-icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #e6f3f0;
+  color: #2f8f7c;
+}
+
+.auth-card h1 {
+  margin: 0 0 4px;
+  text-align: center;
+  color: #1c2b2d;
+  font-size: 24px;
+  letter-spacing: 0.5px;
+}
+
+.subtitle {
+  margin: 0 0 24px;
+  text-align: center;
+  color: #7a8988;
+  font-size: 14px;
+}
+
+.tabs {
+  display: flex;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #dbe3e2;
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  background: #f0f3f2;
+  cursor: pointer;
+  font-weight: 600;
+  color: #5a6b6a;
+  transition: background 0.15s, color 0.15s;
+}
+
+.tab-btn.active {
+  background: #2f8f7c;
+  color: #ffffff;
+}
+
+.tab-panel {
+  display: none;
+  flex-direction: column;
+}
+
+.tab-panel.active {
+  display: flex;
+}
+
+label {
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: #445655;
+}
+
+input {
+  padding: 12px 14px;
+  margin-bottom: 18px;
+  border: 1px solid #d3dbda;
+  border-radius: 10px;
+  font-size: 15px;
+}
+
+input:focus {
+  outline: none;
+  border-color: #2f8f7c;
+  box-shadow: 0 0 0 3px rgba(47, 143, 124, 0.15);
+}
+
+button[type="submit"], #logoutBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px;
+  border: none;
+  border-radius: 10px;
+  background: #2f8f7c;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+button[type="submit"]:hover, #logoutBtn:hover {
+  background: #267566;
+}
+
+.error-msg {
+  background: #fdecea;
+  color: #b3261e;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+#welcomeMsg {
+  text-align: center;
+  margin-bottom: 20px;
+}

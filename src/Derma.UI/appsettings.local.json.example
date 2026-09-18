@@ -1,0 +1,5 @@
+{
+  "ConnectionStrings": {
+    "DermaDb": "Server=localhost,1433;Database=DermaDb;User Id=sa;Password=<la-misma-clave-que-en-.env>;TrustServerCertificate=True"
+  }
+}

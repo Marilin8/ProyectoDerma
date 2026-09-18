@@ -1,0 +1,127 @@
+<UserControl x:Class="Derma.UI.Views.InicioView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF">
+
+    <UserControl.Resources>
+        <Style x:Key="TarjetaAccion" TargetType="Button">
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        </Style>
+
+        <Style x:Key="PanelBlanco" TargetType="Border">
+            <Setter Property="Background" Value="White" />
+            <Setter Property="CornerRadius" Value="12" />
+            <Setter Property="Padding" Value="20" />
+        </Style>
+    </UserControl.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="32,24">
+
+            <TextBlock FontSize="24" FontWeight="Bold" Foreground="#1C2B2D">
+                <Run Text="Hola, " /><Run Text="{Binding NombreUsuario}" FontWeight="Bold" /><Run Text=" - Panel Principal" />
+            </TextBlock>
+            <TextBlock Text="{Binding FechaActual}" FontSize="13" Foreground="#7A8988" Margin="0,4,0,24" />
+
+            <Grid Margin="0,0,0,20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0" Style="{StaticResource TarjetaAccion}"
+                        Command="{Binding DataContext.IrAConsultasCommand, RelativeSource={RelativeSource AncestorType=Window}}">
+                    <Border Background="#3E7FD9" CornerRadius="12" Padding="24">
+                        <StackPanel Orientation="Horizontal">
+                            <Border Width="48" Height="48" Background="#5C93E0" CornerRadius="10" Margin="0,0,16,0">
+                                <TextBlock Text="📋" FontSize="22" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                            <StackPanel VerticalAlignment="Center">
+                                <TextBlock Text="CONSULTAS" FontSize="20" FontWeight="Bold" Foreground="White" />
+                                <TextBlock Text="Ver/Registrar Pacientes" FontSize="12" Foreground="#E3ECFB" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </Button>
+
+                <Button Grid.Column="2" Style="{StaticResource TarjetaAccion}"
+                        Command="{Binding DataContext.IrACitasCommand, RelativeSource={RelativeSource AncestorType=Window}}">
+                    <Border Background="#3FA085" CornerRadius="12" Padding="24">
+                        <StackPanel Orientation="Horizontal">
+                            <Border Width="48" Height="48" Background="#54AF95" CornerRadius="10" Margin="0,0,16,0">
+                                <TextBlock Text="📅" FontSize="22" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                            <StackPanel VerticalAlignment="Center">
+                                <TextBlock Text="CITAS" FontSize="20" FontWeight="Bold" Foreground="White" />
+                                <TextBlock Text="Agendar y Gestionar Citas" FontSize="12" Foreground="#E1F3EC" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </Button>
+            </Grid>
+
+            <Grid Height="460">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="0" Style="{StaticResource PanelBlanco}">
+                    <StackPanel>
+                        <TextBlock Text="RESUMEN DE CITAS" FontSize="13" FontWeight="Bold" Foreground="#445655" Margin="0,0,0,16" />
+
+                        <TextBlock Text="Citas por Mes" FontSize="12" Foreground="#7A8988" Margin="0,0,0,4" />
+                        <lvc:CartesianChart Series="{Binding SeriesCitasPorMes}" XAxes="{Binding EjesCitasPorMes}"
+                                             Height="180" Margin="0,0,0,16" />
+
+                        <TextBlock Text="Tratamientos Comunes" FontSize="12" Foreground="#7A8988" Margin="0,0,0,4" />
+                        <lvc:PieChart Series="{Binding SeriesTratamientos}" Height="160" LegendPosition="Right" />
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="2" Style="{StaticResource PanelBlanco}">
+                    <StackPanel>
+                        <TextBlock FontSize="13" FontWeight="Bold" Foreground="#445655" Margin="0,0,0,12">
+                            <Run Text="CITAS PROGRAMADAS (Hoy - " /><Run Text="{Binding FechaActual}" /><Run Text=")" />
+                        </TextBlock>
+
+                        <DataGrid ItemsSource="{Binding CitasDeHoy}" AutoGenerateColumns="False"
+                                  IsReadOnly="True" HeadersVisibility="Column" GridLinesVisibility="None"
+                                  Background="Transparent" BorderThickness="0" RowBackground="Transparent"
+                                  CanUserAddRows="False" CanUserResizeRows="False" MaxHeight="400"
+                                  VerticalAlignment="Top">
+                            <DataGrid.ColumnHeaderStyle>
+                                <Style TargetType="DataGridColumnHeader">
+                                    <Setter Property="Background" Value="Transparent" />
+                                    <Setter Property="Foreground" Value="#7A8988" />
+                                    <Setter Property="FontSize" Value="12" />
+                                    <Setter Property="Padding" Value="4,8" />
+                                    <Setter Property="HorizontalContentAlignment" Value="Left" />
+                                </Style>
+                            </DataGrid.ColumnHeaderStyle>
+                            <DataGrid.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="BorderThickness" Value="0" />
+                                    <Setter Property="Padding" Value="4,8" />
+                                    <Setter Property="FontSize" Value="13" />
+                                </Style>
+                            </DataGrid.CellStyle>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Hora" Binding="{Binding Hora}" Width="80" />
+                                <DataGridTextColumn Header="Paciente" Binding="{Binding Paciente}" Width="130" />
+                                <DataGridTextColumn Header="Médico" Binding="{Binding Medico}" Width="100" />
+                                <DataGridTextColumn Header="Tipo" Binding="{Binding Tipo}" Width="100" />
+                                <DataGridTextColumn Header="Estado" Binding="{Binding Estado}" Width="90" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
